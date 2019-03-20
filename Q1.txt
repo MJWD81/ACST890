@@ -1,0 +1,25 @@
+# Function created in R:
+#To use the bond price function,
+#Coupon is the amount of coupon received in one year, so if receiving coupon every
+#6 months please double that value
+#Please enter maturity in years
+#Intrate is the interest rate per year,
+#Facevalue is the amount received at maturity
+#coupon.freq is the number of coupons paid each year 
+#so for 6 monthly payments please enter the number "2"
+#When using bondprice function type bondprice( , , , ,)
+bondprice<-function(coupon,maturity,Int.rate,Facevalue,coupon.freq)
+  { periods=maturity*coupon.freq
+  coupon.period=coupon/coupon.freq
+  Intrate.period=Int.rate/coupon.freq
+  bond.coupon<-rep(coupon.period,times=periods,length.out=NA,each=1)
+  bond.df<-as.data.frame(bond.coupon)
+  for (i in 1:periods) {bond.df$cf[i]=coupon.period
+  bond.df$period [i]=i
+  bond.df$yield[i]=yield.period } 
+  bond.df$cf[periods]=bond.df$cf[periods]+ Facevalue
+  bond.df$PV=bond.df$cf/exp(bond.df$yield*bond.df$period)
+  bond.df
+  value=sum(bond.df$PV)
+  value}
+
